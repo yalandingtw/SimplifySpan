@@ -19,7 +19,7 @@ public class SpecialTextUnit extends BaseSpecialUnit {
     private boolean isTextItalic;
     private SpecialClickableUnit specialClickableUnit;
     private TextView curTextView;
-
+    private Typeface typeface;
     /**
      * @param text text
      */
@@ -181,6 +181,15 @@ public class SpecialTextUnit extends BaseSpecialUnit {
         return this;
     }
 
+    /**
+     * Set Typeface
+     * @param typeface current Typeface
+     */
+    public SpecialTextUnit setTypeface(Typeface typeface) {
+        this.typeface = typeface;
+        return this;
+    }
+
     public int getTextColor() {
         return textColor;
     }
@@ -221,4 +230,7 @@ public class SpecialTextUnit extends BaseSpecialUnit {
         return specialClickableUnit;
     }
 
+    public Typeface getTypeface() {
+        return typeface;
+    }
 }

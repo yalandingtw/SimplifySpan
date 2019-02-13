@@ -11,6 +11,7 @@ import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.text.style.UnderlineSpan;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import cn.iwgang.simplifyspan.customspan.CustomAbsoluteSizeSpan;
 import cn.iwgang.simplifyspan.customspan.CustomClickableSpan;
 import cn.iwgang.simplifyspan.customspan.CustomImageSpan;
 import cn.iwgang.simplifyspan.customspan.CustomLabelSpan;
+import cn.iwgang.simplifyspan.customspan.CustomTypefaceSpan;
 import cn.iwgang.simplifyspan.other.CustomLinkMovementMethod;
 import cn.iwgang.simplifyspan.other.OnClickStateChangeListener;
 import cn.iwgang.simplifyspan.other.SpecialConvertMode;
@@ -370,6 +372,10 @@ public class SimplifySpanBuild {
                         }
                     }
 
+                    // Set Typeface
+                    if (specialTextUnit.getTypeface() != null) {
+                        spannableStringBuilder.setSpan(new CustomTypefaceSpan(specialTextUnit.getTypeface()), startPos, startPos + specialTextLength, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
                     // set clickable
                     if (null != internalSpecialClickableUnit) {
                         if (!isInitClickListener) {
@@ -392,7 +398,7 @@ public class SimplifySpanBuild {
                     int bitWidth = bitmap.getWidth();
                     int bitHeight = bitmap.getHeight();
 
-                    if (imgWidth < bitWidth && imgHeight < bitHeight) {
+                    if (imgWidth < bitWidth || imgHeight < bitHeight) {
                         Bitmap newBitmap = ThumbnailUtils.extractThumbnail(bitmap, imgWidth, imgHeight);
                         if (null != newBitmap) {
                             bitmap.recycle();
